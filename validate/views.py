@@ -50,9 +50,9 @@ class ValidateCard:
         'JCB': ('35',),
         'AAA': ('620',),
         'Discover': (['6011', '64', '65'] +
-            [str(n) for n in range(622126, 622925)] +
-            [str(n) for n in range(624000, 626999)] +
-            [str(n) for n in range(628200, 628899)]),
+                     [str(n) for n in range(622126, 622925)] +
+                     [str(n) for n in range(624000, 626999)] +
+                     [str(n) for n in range(628200, 628899)]),
         'Mastercard': ([str(n) for n in range(2221, 2720)] +
                        ['51', '52', '53', '55']),
         'Visa': ('4',)}
@@ -148,7 +148,7 @@ class CreateCard(ValidateCard):
     no array variables are needed to loop through as in searching or sorting
     algorithms).
     '''
-    digit_count = 16 # max number of digits the card will have
+    digit_count = 16  # max number of digits the card will have
 
     def __init__(self, major_identifier):
         self.major_identifier = major_identifier
