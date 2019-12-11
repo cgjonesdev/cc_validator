@@ -22,6 +22,11 @@ Note: `.get` is used as a static method because the url resolver needs to pass
     class processing the request. There are probably many ways to do this and
     ones that are more Django approved, but this works well and helps to
     preserve encapsulation.
+Note: No models are used in this implementation as there is no clear reason to
+    store any data. Future implementations might want to track incoming request
+    data and capture which numbers people are trying to validate or which ones
+    get genarated for whom (ip address and locale at least), but for simple
+    functionality of this application, data storage is not required.
 
 '''
 import os
@@ -50,9 +55,9 @@ class ValidateCard:
         'JCB': ('35',),
         'AAA': ('620',),
         'Discover': (['6011', '64', '65'] +
-                     [str(n) for n in range(622126, 622925)] +
-                     [str(n) for n in range(624000, 626999)] +
-                     [str(n) for n in range(628200, 628899)]),
+            [str(n) for n in range(622126, 622925)] +
+            [str(n) for n in range(624000, 626999)] +
+            [str(n) for n in range(628200, 628899)]),
         'Mastercard': ([str(n) for n in range(2221, 2720)] +
                        ['51', '52', '53', '55']),
         'Visa': ('4',)}
@@ -148,7 +153,7 @@ class CreateCard(ValidateCard):
     no array variables are needed to loop through as in searching or sorting
     algorithms).
     '''
-    digit_count = 16  # max number of digits the card will have
+    digit_count = 16 # max number of digits the card will have
 
     def __init__(self, major_identifier):
         self.major_identifier = major_identifier
